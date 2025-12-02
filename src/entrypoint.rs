@@ -14,13 +14,13 @@ use winapi::um::libloaderapi::{GetModuleHandleW, GetProcAddress};
 const EXCEL12ENTRYPT: &[u8] = b"MdCallBack12\0";
 const XLCALL32DLL: &str = "XLCall32";
 const XLCALL32ENTRYPT: &[u8] = b"GetExcel12EntryPt\0";
-type EXCEL12PROC = extern "stdcall" fn(
+type EXCEL12PROC = extern "system" fn(
     xlfn: ::std::os::raw::c_int,
     count: ::std::os::raw::c_int,
     rgpxloper12: *const LPXLOPER12,
     xloper12res: LPXLOPER12,
 ) -> ::std::os::raw::c_int;
-type FNGETEXCEL12ENTRYPT = extern "stdcall" fn() -> usize;
+type FNGETEXCEL12ENTRYPT = extern "system" fn() -> usize;
 
 static mut XLCALL_HMODULE: HMODULE = ptr::null_mut();
 static mut PEXCEL12: usize = 0;

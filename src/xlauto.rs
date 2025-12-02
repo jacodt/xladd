@@ -7,7 +7,7 @@
 use crate::xlcall::LPXLOPER12;
 
 #[unsafe(no_mangle)]
-pub extern "stdcall" fn xlAutoFree12(px_free: LPXLOPER12) {
+pub extern "system" fn xlAutoFree12(px_free: LPXLOPER12) {
     // take ownership of this xloper. Then when our xloper goes
     // out of scope, its drop method will free any resources.
     let _ = unsafe { Box::from_raw(px_free) };
